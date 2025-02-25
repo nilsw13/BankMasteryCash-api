@@ -1,8 +1,0 @@
-/home/pasdansca/Desktop/SimplonProjects/BankMasteryCash-api/src/main/java/com/nilsw13/AppLauncher.java
-/home/pasdansca/Desktop/SimplonProjects/BankMasteryCash-api/src/main/java/com/nilsw13/context/ApplicationConfiguration.java
-/home/pasdansca/Desktop/SimplonProjects/BankMasteryCash-api/src/main/java/com/nilsw13/model/SavingAccount.java
-/home/pasdansca/Desktop/SimplonProjects/BankMasteryCash-api/src/main/java/com/nilsw13/model/Transaction.java
-/home/pasdansca/Desktop/SimplonProjects/BankMasteryCash-api/src/main/java/com/nilsw13/service/DbInitializer.java
-/home/pasdansca/Desktop/SimplonProjects/BankMasteryCash-api/src/main/java/com/nilsw13/service/SavingAccountService.java
-/home/pasdansca/Desktop/SimplonProjects/BankMasteryCash-api/src/main/java/com/nilsw13/service/TransactionService.java
-/home/pasdansca/Desktop/SimplonProjects/BankMasteryCash-api/src/main/java/com/nilsw13/web/TransactionController.java

@@ -24,12 +24,12 @@ public class TransactionController {
     }
 
 
-    @GetMapping("/transactions")
+    @GetMapping("/v1/transactions")
     public List<Transaction> getTransactions(){
         return transactionService.findAll();
     }
 
-    @PostMapping("/add-transaction")
+    @PostMapping("/v1/add-transaction")
     public ResponseEntity<Transaction> addTransaction(@RequestBody @Valid TransactionDto transactionDto){
 
 
