@@ -18,7 +18,6 @@ public class DbInitializer {
         this.transactionService = transactionService;
     }
 
-    UUID uuid = UUID.randomUUID();
 
 
     @PostConstruct
@@ -34,8 +33,3 @@ public class DbInitializer {
 }
 
 
-//public Transaction create(     String id,
-//                               BigDecimal amount,
-//                               String reference,
-//                               String customer,
-//                               String paymentMethod )

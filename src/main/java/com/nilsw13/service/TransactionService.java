@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -60,10 +61,12 @@ public class TransactionService {
                 : null;
 
         Transaction transaction = new Transaction();
+        transaction.setId(id);
         transaction.setAmount(amount);
         transaction.setReference(reference);
         transaction.setCustomer(customer);
         transaction.setPaymentMethod(paymentMethod);
+        transaction.setCreated_at(LocalDateTime.now());
         return transaction;
 
     }
