@@ -1,6 +1,7 @@
 package com.nilsw13;
 
 import com.nilsw13.context.ApplicationConfiguration;
+import com.nilsw13.context.MyWebAppInitializer;
 import jakarta.servlet.ServletContext;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
@@ -16,8 +17,18 @@ public class AppLauncher {
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(8080);
         tomcat.getConnector();
-
         Context tomcatCtx = tomcat.addContext("", null);
+
+
+        // on ajouter un listener pour ecouter quand le filtre spring est ajouter
+        tomcatCtx.addServletContainerInitializer(
+                (set, servletContext) -> {
+                    new MyWebAppInitializer().onStartup(servletContext);
+                },
+                null
+        );
+
+
         WebApplicationContext appCtx = createApplicationContext(tomcatCtx.getServletContext());
         DispatcherServlet dispatcherServlet = new DispatcherServlet(appCtx);
         Wrapper servlet = tomcat.addServlet(tomcatCtx, "dispatcherServlet", dispatcherServlet);
