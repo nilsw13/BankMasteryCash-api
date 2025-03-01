@@ -11,6 +11,11 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+
+
+// on doit ajouter manuellement le filtre spring filter chain car on utlise un serveur tomcatembedded config custom
+
+
 public class AppLauncher {
 
     public static void main(String args[]) throws LifecycleException {
@@ -21,6 +26,7 @@ public class AppLauncher {
 
 
         // on ajouter un listener pour ecouter quand le filtre spring est ajouter
+
         tomcatCtx.addServletContainerInitializer(
                 (set, servletContext) -> {
                     new MyWebAppInitializer().onStartup(servletContext);
