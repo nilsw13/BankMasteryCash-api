@@ -6,7 +6,7 @@
         <appender-ref ref="FILE" />
     </root>
 
-    <!-- Définir le niveau de log pour votre package -->
+
     <logger name="com.nilsw13" level="DEBUG" />
 
     <logger name="org.springframework.security" level="DEBUG" />
