@@ -37,4 +37,20 @@ Ce projet a pour but de m'exercer à utiliser le framework Spring en profondeur,
    cd votre-projet
    ```
 
+2. **Configurer la base de données** :
+
+    Assurez-vous d'avoir une base de données configurée (par exemple, MySQL, PostgreSQL, etc.).
+
+    Modifiez le fichier application.properties pour y ajouter les informations de connexion à votre base de données.
+
+3. **Compiler et exécuter le projet**:
+   ```bash
+   mvn clean install
+   mvn package
+   cd target
+   java -jar BankMasteryCash-api-1.0-SNAPSHOT.jar
+   ```
+4. **Accès à l'api en developpement**:
+   http://localhost:8080
+
 
