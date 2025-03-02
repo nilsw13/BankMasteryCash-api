@@ -26,7 +26,7 @@ public class TransactionService {
 
 
     public List<Transaction> findAll(){
-        return jdbcTemplate.query("select id, reference,customer,  payment_method ,amount, timestamp from transactions", (resultSet, rowNum) -> {
+        return jdbcTemplate.query("select id, reference,customer,  payment_method ,amount, created_at, type from transactions", (resultSet, rowNum) -> {
            Transaction transaction = new Transaction();
 
            transaction.setId(UUID.fromString(resultSet.getObject("id").toString()));
@@ -34,12 +34,13 @@ public class TransactionService {
            transaction.setCustomer(resultSet.getString("customer"));
            transaction.setAmount(resultSet.getBigDecimal("amount"));
            transaction.setPaymentMethod(resultSet.getString("payment_method"));
-           transaction.setCreated_at(resultSet.getTimestamp("timestamp").toLocalDateTime());
+           transaction.setCreated_at(resultSet.getTimestamp("created_at").toLocalDateTime());
+           transaction.setType(resultSet.getString("type"));
            return transaction;
         });
     }
 
-    public Transaction create( BigDecimal amount, String reference, String customer,  String paymentMethod){
+    public Transaction create( BigDecimal amount, String reference, String customer,  String paymentMethod, String type){
 
         UUID id = UUID.randomUUID();
 
@@ -47,13 +48,14 @@ public class TransactionService {
 
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
-                    .prepareStatement("insert into transactions (id,  amount, reference, customer, payment_method) values (?,?,?,?,?)"
+                    .prepareStatement("insert into transactions (id,  amount, reference, customer, payment_method,type) values (?,?,?,?,?, ?)"
                             , Statement.RETURN_GENERATED_KEYS);
             ps.setObject(1,id);
             ps.setBigDecimal(2, amount);
             ps.setString(3, reference);
             ps.setString(4, customer);
             ps.setString(5, paymentMethod);
+            ps.setString(6,type);
             return ps;
         }, keyHolder);
 
@@ -67,6 +69,7 @@ public class TransactionService {
         transaction.setCustomer(customer);
         transaction.setPaymentMethod(paymentMethod);
         transaction.setCreated_at(LocalDateTime.now());
+        transaction.setType(type);
         return transaction;
 
     }

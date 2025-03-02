@@ -25,6 +25,17 @@ public class TransactionDto {
     @Size(min = 1, max = 255)
     String paymentMethod;
 
+    @NotBlank
+    String type;
+
+    public @NotBlank String getType() {
+        return type;
+    }
+
+    public void setType(@NotBlank String type) {
+        this.type = type;
+    }
+
     public @NotBlank @Size(min = 1, max = 255) String getPaymentMethod() {
         return paymentMethod;
     }

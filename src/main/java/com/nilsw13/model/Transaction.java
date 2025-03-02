@@ -12,6 +12,9 @@ public class Transaction {
     String paymentMethod;
 
 
+    String type;
+
+
 
     String customer;
     BigDecimal amount;
@@ -20,12 +23,13 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction( String reference, String customer, String paymentMethod, BigDecimal amount) {
+    public Transaction( String reference, String customer, String paymentMethod, BigDecimal amount, String type) {
         this.id = UUID.randomUUID();
         this.reference = reference;
         this.customer = customer;
         this.paymentMethod = paymentMethod;
         this.amount = amount;
+        this.type = type;
         this.created_at = LocalDateTime.now();
     }
 
@@ -76,4 +80,13 @@ public class Transaction {
     public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
 }

@@ -37,7 +37,8 @@ public class TransactionController {
                     transactionDto.getAmount(),
                     transactionDto.getReference(),
                     transactionDto.getCustomer(),
-                    transactionDto.getPaymentMethod()
+                    transactionDto.getPaymentMethod(),
+                    transactionDto.getType()
             );
 
             return ResponseEntity.status(HttpStatus.CREATED).body(transaction);

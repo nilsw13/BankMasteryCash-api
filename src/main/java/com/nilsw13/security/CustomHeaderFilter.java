@@ -20,6 +20,12 @@ public class CustomHeaderFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
        String dashBoardToken = request.getHeader("X-Dashboard-Token");
+
+       if(request.getMethod().equals("OPTIONS")){
+           filterChain.doFilter(request,response);
+           return;
+       }
+
        if (dashBoardToken == null || !dashBoardToken.equals(expectedToken)){
            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
            response.getWriter().write("Acces non autorisé: Token invalide ou manquant");

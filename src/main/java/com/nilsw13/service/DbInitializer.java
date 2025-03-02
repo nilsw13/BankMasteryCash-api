@@ -1,6 +1,7 @@
 package com.nilsw13.service;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Profile("dev")
 @Service
+@DependsOn("dataSourceInitializer")
 public class DbInitializer {
 
     private final TransactionService transactionService;
@@ -23,12 +25,13 @@ public class DbInitializer {
     @PostConstruct
     public void init() {
         System.out.println("initiliazing DB in dev env");
-        transactionService.create( BigDecimal.valueOf(19.99), "Netflix", "nilsw13", "bank_transfer" );
-        transactionService.create( BigDecimal.valueOf(250), "Leclerc", "nilsw13", "credit_card" );
-        transactionService.create( BigDecimal.valueOf(12.70), "JetBrains", "nilsw13", "credit_card" );
-        transactionService.create( BigDecimal.valueOf(12), "Tobacco", "nilsw13", "credit_card" );
-        transactionService.create( BigDecimal.valueOf(25), "Fitness Park", "nilsw13", "credit_card" );
-        transactionService.create( BigDecimal.valueOf(620), "Rent", "nilsw13", "bank_transfer" );
+        transactionService.create( BigDecimal.valueOf(19.99), "Netflix", "nilsw13", "bank_transfer", "outcome" );
+        transactionService.create( BigDecimal.valueOf(250), "Leclerc", "nilsw13", "credit_card", "outcome" );
+        transactionService.create( BigDecimal.valueOf(12.70), "JetBrains", "nilsw13", "credit_card", "outcome" );
+        transactionService.create( BigDecimal.valueOf(12), "Tobacco", "nilsw13", "credit_card", "outcome" );
+        transactionService.create( BigDecimal.valueOf(25), "Fitness Park", "nilsw13", "credit_card", "outcome" );
+        transactionService.create( BigDecimal.valueOf(620), "Rent", "nilsw13", "bank_transfer", "outcome" );
+        
     }
 }
 

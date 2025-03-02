@@ -4,7 +4,8 @@ create table if not exists transactions(
     reference VARCHAR(255) ,
     amount NUMERIC(19, 2) NOT NULL,
     payment_method VARCHAR(255) NOT NULL ,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    type VARCHAR(255) NOT NULL
 );
 
 create table if not exists savingaccounts(
@@ -12,5 +13,6 @@ create table if not exists savingaccounts(
     account_name VARCHAR(255) NOT NULL ,
     total_money  NUMERIC(19,2) NOT NULL ,
     rate NUMERIC (19,2)  NOT NULL,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
