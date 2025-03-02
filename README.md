@@ -14,6 +14,7 @@ Ce projet a pour but de m'exercer à utiliser le framework Spring en profondeur,
 - **Spring Framework** : Pour la gestion des dépendances, la configuration de l'application, et la gestion des requêtes HTTP.
 - **Apache Tomcat** : Serveur embarqué personnalisé pour exécuter l'application.
 - **Java** : Langage de programmation principal.
+- **Spring JDBC** : Pour interagir directement avec la base de données sans utiliser d'ORM, afin de comprendre les mécanismes de base de l'accès aux données.
 
 ## Structure du Projet
 
