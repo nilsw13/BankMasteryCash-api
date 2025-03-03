@@ -9,10 +9,11 @@ create table if not exists transactions(
 );
 
 create table if not exists savingaccounts(
-    id SERIAL PRIMARY KEY,
+    id uuid PRIMARY KEY,
     account_name VARCHAR(255) NOT NULL ,
     total_money  NUMERIC(19,2) NOT NULL ,
     rate NUMERIC (19,2)  NOT NULL,
+    icon_ref VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

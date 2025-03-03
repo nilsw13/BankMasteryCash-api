@@ -21,7 +21,7 @@ public class CustomHeaderFilter extends OncePerRequestFilter {
 
        String dashBoardToken = request.getHeader("X-Dashboard-Token");
 
-       if(request.getMethod().equals("OPTIONS")){
+       if(request.getMethod().equals("OPTIONS") || request.getRequestURI().equals("/")){
            filterChain.doFilter(request,response);
            return;
        }

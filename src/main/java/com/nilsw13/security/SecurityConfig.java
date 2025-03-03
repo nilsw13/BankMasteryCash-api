@@ -35,8 +35,10 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/v1/transactions").permitAll()
                         .requestMatchers("/v1/add-transaction").permitAll()
+                        .requestMatchers("/v1/savings").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(customHeaderFilter, DisableEncodeUrlFilter.class)

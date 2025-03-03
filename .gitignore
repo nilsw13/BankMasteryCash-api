@@ -4,3 +4,7 @@ src/main/resources/application-prod.properties
 
 /target
 dependency-reduced-pom.xml
+
+src/main/java/com/nilsw13/.rest
+
+/.idea

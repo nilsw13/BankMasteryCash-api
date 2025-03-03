@@ -2,9 +2,13 @@ package com.nilsw13.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class SavingAccount {
 
+
+
+    UUID id;
     String name, iconRef;
 
     BigDecimal amount, rate;
@@ -15,11 +19,20 @@ public class SavingAccount {
     }
 
     public SavingAccount(String name, String iconRef, BigDecimal amount, BigDecimal rate) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.iconRef = iconRef;
         this.amount = amount;
         this.rate = rate;
         this.created_At = LocalDateTime.now();
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {

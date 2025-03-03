@@ -23,10 +23,12 @@ public class TransactionService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    String sqlFind = "select id, reference,customer,  payment_method ,amount, created_at, type from transactions";
+    String sqlInsert = "insert into transactions (id,  amount, reference, customer, payment_method,type) values (?,?,?,?,?, ?)";
 
 
     public List<Transaction> findAll(){
-        return jdbcTemplate.query("select id, reference,customer,  payment_method ,amount, created_at, type from transactions", (resultSet, rowNum) -> {
+        return jdbcTemplate.query(sqlFind, (resultSet, rowNum) -> {
            Transaction transaction = new Transaction();
 
            transaction.setId(UUID.fromString(resultSet.getObject("id").toString()));
@@ -48,7 +50,7 @@ public class TransactionService {
 
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
-                    .prepareStatement("insert into transactions (id,  amount, reference, customer, payment_method,type) values (?,?,?,?,?, ?)"
+                    .prepareStatement(sqlInsert
                             , Statement.RETURN_GENERATED_KEYS);
             ps.setObject(1,id);
             ps.setBigDecimal(2, amount);

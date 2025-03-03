@@ -1,4 +1,0 @@
-###
-GET http://localhost:8080/v1/transactions
-###
-GET https://javatoptoolsapi-production.up.railway.app/api/java-repos/list
