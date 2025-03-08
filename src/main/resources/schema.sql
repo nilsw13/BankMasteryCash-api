@@ -13,7 +13,6 @@ create table if not exists savingaccounts(
     account_name VARCHAR(255) NOT NULL ,
     total_money  NUMERIC(19,2) NOT NULL ,
     rate NUMERIC (19,2)  NOT NULL,
-    icon_ref VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

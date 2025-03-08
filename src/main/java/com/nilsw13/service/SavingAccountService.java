@@ -23,8 +23,8 @@ public class SavingAccountService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    String sqlFind = "select id, account_name, total_money, rate, icon_ref, created_at from savingaccounts";
-    String sqlInsert = "insert into savingaccounts (id, account_name, total_money, rate, icon_ref, created_at) values (?,?,?,?,?,?)";
+    String sqlFind = "select id, account_name, total_money, rate,  created_at from savingaccounts";
+    String sqlInsert = "insert into savingaccounts (id, account_name, total_money, rate,  created_at) values (?,?,?,?,?)";
 
     public List<SavingAccount> findAll(){
         return jdbcTemplate.query(sqlFind, (result, rowNum) -> {
@@ -33,13 +33,13 @@ public class SavingAccountService {
             savingAccount.setName(result.getString("account_name"));
             savingAccount.setAmount(result.getBigDecimal("total_money"));
             savingAccount.setRate(result.getBigDecimal("rate"));
-            savingAccount.setIconRef(result.getString("icon_ref"));
+
             savingAccount.setCreated_At(result.getTimestamp("created_at").toLocalDateTime());
             return  savingAccount;
         });
     }
 
-    public SavingAccount create(String accountName, BigDecimal totalMoney, BigDecimal rate, String iconRef){
+    public SavingAccount create(String accountName, BigDecimal totalMoney, BigDecimal rate){
 
             UUID id = UUID.randomUUID();
             LocalDateTime created_at = LocalDateTime.now();
@@ -53,8 +53,8 @@ public class SavingAccountService {
                 ps.setString(2, accountName);
                 ps.setBigDecimal(3, totalMoney);
                 ps.setBigDecimal(4, rate);
-                ps.setString(5, iconRef);
-                ps.setTimestamp(6, Timestamp.valueOf(created_at));
+
+                ps.setTimestamp(5, Timestamp.valueOf(created_at));
                 return ps;
             }, keyHolder);
 
@@ -67,7 +67,6 @@ public class SavingAccountService {
             savingAccount.setName(accountName);
             savingAccount.setAmount(totalMoney);
             savingAccount.setRate(rate);
-            savingAccount.setIconRef(iconRef);
             savingAccount.setCreated_At(created_at);
             return savingAccount;
     }

@@ -31,24 +31,23 @@ public class DbInitializer {
     public void init() {
         System.out.println("initiliazing DB in dev env");
         List<Transaction> transactionList = transactionService.findAll();
-        if (transactionList.isEmpty()) {
-            transactionService.create( BigDecimal.valueOf(19.99), "Netflix", "nilsw13", "bank_transfer", "outcome" );
-            transactionService.create( BigDecimal.valueOf(1250), "Web development", "nilsw13", "bank_transfer", "income" );
-            transactionService.create( BigDecimal.valueOf(12.70), "JetBrains", "nilsw13", "credit_card", "outcome" );
-            transactionService.create( BigDecimal.valueOf(12), "Tobacco", "nilsw13", "credit_card", "outcome" );
-            transactionService.create( BigDecimal.valueOf(2500), "Salary", "nilsw13", "credit_card", "income" );
-            transactionService.create( BigDecimal.valueOf(620), "Rent", "nilsw13", "bank_transfer", "outcome" );
-        } else {
-            System.out.println("Transaction table is already filled");
-        }
+        transactionService.create( BigDecimal.valueOf(19.99), "Netflix", "nilsw13", "bank_transfer", "outcome" );
+        transactionService.create( BigDecimal.valueOf(1250), "Web development", "nilsw13", "bank_transfer", "income" );
+        transactionService.create( BigDecimal.valueOf(12.70), "JetBrains", "nilsw13", "credit_card", "outcome" );
+        transactionService.create( BigDecimal.valueOf(12), "Tobacco", "nilsw13", "credit_card", "outcome" );
+        transactionService.create( BigDecimal.valueOf(44.99), "Vinted", "nilsw13", "credit_card", "income" );
+        transactionService.create( BigDecimal.valueOf(19.99), "Saas", "nilsw13", "credit_card", "income" );
+        transactionService.create( BigDecimal.valueOf(2500), "Salary", "nilsw13", "credit_card", "income" );
+        transactionService.create( BigDecimal.valueOf(620), "Rent", "nilsw13", "bank_transfer", "outcome" );
+        transactionService.create( BigDecimal.valueOf(19.99), "Saas", "nilsw13", "credit_card", "income" );
 
         List<SavingAccount> accountList = savingAccountService.findAll();
         if(accountList.isEmpty()) {
 
-            savingAccountService.create("Green Investment", BigDecimal.valueOf(250), BigDecimal.valueOf(0.75), "<TreePine/>");
-            savingAccountService.create("Daily Savings", BigDecimal.valueOf(3600), BigDecimal.valueOf(0.75), "<PiggyBank/>");
-            savingAccountService.create("Tech Assets", BigDecimal.valueOf(12500), BigDecimal.valueOf(0.75), "<ComputerIcon/>");
-            savingAccountService.create("Real Estate", BigDecimal.valueOf(54320), BigDecimal.valueOf(0.75), "<RealEstate/>");
+            savingAccountService.create("Green Investment", BigDecimal.valueOf(250), BigDecimal.valueOf(0.35));
+            savingAccountService.create("Daily Savings", BigDecimal.valueOf(3600), BigDecimal.valueOf(0.75));
+            savingAccountService.create("Tech Assets", BigDecimal.valueOf(12500), BigDecimal.valueOf(3.75));
+            savingAccountService.create("Real Estate", BigDecimal.valueOf(54320), BigDecimal.valueOf(6.75));
         } else {
             System.out.println("SavingAccount table is already filled");
         }

@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/v1/transactions").permitAll()
                         .requestMatchers("/v1/add-transaction").permitAll()
                         .requestMatchers("/v1/savings").permitAll()
+                        .requestMatchers("/v1/add-saving").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(customHeaderFilter, DisableEncodeUrlFilter.class)
