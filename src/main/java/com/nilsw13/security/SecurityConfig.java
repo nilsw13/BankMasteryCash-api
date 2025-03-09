@@ -55,7 +55,8 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedOrigins(Arrays.asList(
-                "http://localhost:5173"
+                "http://localhost:5173",
+                "https://bc95bdd9af77.ngrok.app"
         ));
 
         corsConfiguration.setAllowedMethods(Arrays.asList(

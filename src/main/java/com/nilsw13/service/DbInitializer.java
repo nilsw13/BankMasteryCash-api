@@ -31,15 +31,22 @@ public class DbInitializer {
     public void init() {
         System.out.println("initiliazing DB in dev env");
         List<Transaction> transactionList = transactionService.findAll();
-        transactionService.create( BigDecimal.valueOf(19.99), "Netflix", "nilsw13", "bank_transfer", "outcome" );
-        transactionService.create( BigDecimal.valueOf(1250), "Web development", "nilsw13", "bank_transfer", "income" );
-        transactionService.create( BigDecimal.valueOf(12.70), "JetBrains", "nilsw13", "credit_card", "outcome" );
-        transactionService.create( BigDecimal.valueOf(12), "Tobacco", "nilsw13", "credit_card", "outcome" );
-        transactionService.create( BigDecimal.valueOf(44.99), "Vinted", "nilsw13", "credit_card", "income" );
-        transactionService.create( BigDecimal.valueOf(19.99), "Saas", "nilsw13", "credit_card", "income" );
-        transactionService.create( BigDecimal.valueOf(2500), "Salary", "nilsw13", "credit_card", "income" );
-        transactionService.create( BigDecimal.valueOf(620), "Rent", "nilsw13", "bank_transfer", "outcome" );
-        transactionService.create( BigDecimal.valueOf(19.99), "Saas", "nilsw13", "credit_card", "income" );
+           if (transactionList.isEmpty()) {
+               transactionService.create(BigDecimal.valueOf(19.99), "Netflix", "nilsw13", "bank_transfer", "outcome");
+               transactionService.create(BigDecimal.valueOf(1250), "Web development", "nilsw13", "bank_transfer", "income");
+               transactionService.create(BigDecimal.valueOf(12.70), "JetBrains", "nilsw13", "credit_card", "outcome");
+               transactionService.create(BigDecimal.valueOf(12), "Tobacco", "nilsw13", "credit_card", "outcome");
+               transactionService.create(BigDecimal.valueOf(44.99), "Vinted", "nilsw13", "credit_card", "income");
+               transactionService.create(BigDecimal.valueOf(19.99), "Saas", "nilsw13", "credit_card", "income");
+               transactionService.create(BigDecimal.valueOf(2500), "Salary", "nilsw13", "credit_card", "income");
+               transactionService.create(BigDecimal.valueOf(620), "Rent", "nilsw13", "bank_transfer", "outcome");
+               transactionService.create(BigDecimal.valueOf(19.99), "Saas", "nilsw13", "credit_card", "income");
+
+           }     else  {
+               System.out.println("Transaction table is already filled");
+           }
+
+
 
         List<SavingAccount> accountList = savingAccountService.findAll();
         if(accountList.isEmpty()) {
