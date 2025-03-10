@@ -34,16 +34,15 @@ import java.util.Map;
 @EnableWebSecurity
 public class ApplicationConfiguration {
 
-
     @Value("${db.url}")
-    String url;
-
-
+    private String url;
 
     @Value("${db.username}")
-    String username;
+    private String username;
+
     @Value("${db.password}")
-    String password;
+    private String password;
+
 
 
 
@@ -52,39 +51,20 @@ public class ApplicationConfiguration {
         return new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
 
-        // Création d'une source de propriétés personnalisée
-        MutablePropertySources propertySources = new MutablePropertySources();
-
-        Map<String, String> envVariables = System.getenv();
-        Map<String, Object> envVariablesAsObjects = new HashMap<>(envVariables);
-        // Ajouter les variables d'environnement en premier (priorité la plus élevée)
-        propertySources.addFirst(new SystemEnvironmentPropertySource("systemEnvironment", envVariablesAsObjects));
-
-        // Ajouter les propriétés système ensuite
-        propertySources.addLast(new PropertiesPropertySource("systemProperties", System.getProperties()));
-
-        // Configurer les sources de propriétés
-        configurer.setPropertySources(propertySources);
-
-        // Ignorer les placeholders non résolus
-        configurer.setIgnoreUnresolvablePlaceholders(true);
-
-        return configurer;
-    }
 
     @Bean
     public DataSource dataSource () {
         HikariConfig config = new HikariConfig();
 
         config.setJdbcUrl(url);
-
-
         config.setUsername(username);
         config.setPassword(password);
+
+
+        System.out.println("database url prod : " +url);
+        System.out.println("database password : " +password);
+        System.out.println("username prod : " +username);
 
         // config pool de connexions
         config.setPoolName("PostgreSQLHikariPool");
@@ -122,7 +102,7 @@ public class ApplicationConfiguration {
 
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
-        return new JdbcTemplate(dataSource());
+        return new JdbcTemplate(dataSource);
     }
 
 
@@ -140,13 +120,3 @@ public class ApplicationConfiguration {
 
 }
 
-
-/*
-*       VARS
-*   - url -> postgresql://postgres:XgAYosypgvpeSBitEKIbtdjXHpSPyFYM@postgres.railway.internal:5432/railway
-*   - host -> postgres.railway.internal
-*  -password -> XgAYosypgvpeSBitEKIbtdjXHpSPyFYM
-*   -port -> 5432
-*   user-> postgres
-*
-* */
