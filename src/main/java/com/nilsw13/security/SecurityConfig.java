@@ -56,7 +56,7 @@ public class SecurityConfig {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:5173",
-                "https://bc95bdd9af77.ngrok.app"
+                "https://bankmasterycash.netlify.app/"
         ));
 
         corsConfiguration.setAllowedMethods(Arrays.asList(
