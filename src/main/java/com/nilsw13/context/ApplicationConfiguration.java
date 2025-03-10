@@ -32,8 +32,7 @@ public class ApplicationConfiguration {
     @Value("${db.url}")
     String url;
 
-    @Value("${db.driver}")
-    String driver;
+
 
     @Value("${db.username}")
     String username;
@@ -53,7 +52,7 @@ public class ApplicationConfiguration {
 
         config.setJdbcUrl(url);
 
-        config.setDriverClassName(driver);
+
         config.setUsername(username);
         config.setPassword(password);
 
@@ -110,3 +109,14 @@ public class ApplicationConfiguration {
 
 
 }
+
+
+/*
+*       VARS
+*   - url -> postgresql://postgres:XgAYosypgvpeSBitEKIbtdjXHpSPyFYM@postgres.railway.internal:5432/railway
+*   - host -> postgres.railway.internal
+*  -password -> XgAYosypgvpeSBitEKIbtdjXHpSPyFYM
+*   -port -> 5432
+*   user-> postgres
+*
+* */
