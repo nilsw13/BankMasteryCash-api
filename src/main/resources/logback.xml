@@ -11,6 +11,7 @@
 
     <logger name="org.springframework.security" level="DEBUG" />
 
+
     <!-- Appender pour la console -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

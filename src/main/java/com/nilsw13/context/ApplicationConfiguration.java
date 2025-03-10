@@ -8,6 +8,10 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.MutablePropertySources;
+import org.springframework.core.env.PropertiesPropertySource;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -18,6 +22,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Configuration
@@ -44,6 +50,30 @@ public class ApplicationConfiguration {
     @Bean
     public ObjectMapper objectMapper() {
         return new ObjectMapper().registerModule(new JavaTimeModule());
+    }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
+
+        // Création d'une source de propriétés personnalisée
+        MutablePropertySources propertySources = new MutablePropertySources();
+
+        Map<String, String> envVariables = System.getenv();
+        Map<String, Object> envVariablesAsObjects = new HashMap<>(envVariables);
+        // Ajouter les variables d'environnement en premier (priorité la plus élevée)
+        propertySources.addFirst(new SystemEnvironmentPropertySource("systemEnvironment", envVariablesAsObjects));
+
+        // Ajouter les propriétés système ensuite
+        propertySources.addLast(new PropertiesPropertySource("systemProperties", System.getProperties()));
+
+        // Configurer les sources de propriétés
+        configurer.setPropertySources(propertySources);
+
+        // Ignorer les placeholders non résolus
+        configurer.setIgnoreUnresolvablePlaceholders(true);
+
+        return configurer;
     }
 
     @Bean
